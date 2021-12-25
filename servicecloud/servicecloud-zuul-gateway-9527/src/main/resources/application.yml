@@ -1,0 +1,32 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: servicecloud-zuul
+
+zuul:
+  prefix: /htwy  #设置统一前缀
+  ignored-services: servicecloud-dept #禁止以servicecloud-dept 访问, 禁止多个可用"*"
+  routes:
+    mydept.serviceId: servicecloud-dept #配置对应服务的前缀mydept
+    mydept.path: /mydept/**  #最终该访问路径：http://myzuul.com:9527/htwy/mydept/**
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/,http://eureka7001.com:7001/eureka/
+      #defaultZone: http://localhost:7001/eureka/ #客户端注册进eureka服务列表内
+      #集群环境下注册进所有的eureka服务里
+  instance:
+    instance-id: servicecloud-zuul #主机名称，服务名称修改 默认是以ip和端口
+    prefer-ip-address: true #访问路径可以现实IP地址
+
+#构建微服务info内容详细信息（在eureka监控里点服务链接进去会报错）
+info:
+  app.name: htwy-servicecloud
+  company.name: www.htwy.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+

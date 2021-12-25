@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: servicecloud-config-client-vv
+  cloud:
+    config:
+      name: servicecloud-config-client #需要从github上读取的资源名称，注意没有yml后缀名
+      profile: dev #本次访问的配置项
+      label: master
+      uri: http://config-9505.com:9505 #本微服务启动后先去找9505号服务，通过SpringCloudConfig获取GitHub的服务地址

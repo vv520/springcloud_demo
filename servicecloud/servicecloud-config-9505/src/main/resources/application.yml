@@ -1,0 +1,14 @@
+server:
+  port: 9505
+
+spring:
+  application:
+    name: servicecloud-config
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vv520/servicecloud-config.git
+         # uri: git@github.com:vv520/servicecloud-config.git ssh形式不行，会报错reject HostKey: github.com
+
